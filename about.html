@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>關於努荋・品牌故事｜努荋弄花 Nyhr floral design</title>
+<meta name="description" content="關於努荋・品牌故事。努荋弄花,乾燥花・不凋花・擬真花個人工作室。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<nav><div class="nav-in">
+  <a class="logo" href="index.html">努荋弄花<small>Nyhr floral design</small></a>
+  <button class="burger" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li class="dd"><a href="works.html">作品訂購 ▾</a>
+      <div class="ddm"><a href="works.html#花束花禮">花束花禮</a><a href="works.html#玻璃罩花禮">玻璃罩花禮</a><a href="works.html#花圈壁飾">花圈壁飾</a><a href="works.html#盆花擺飾">盆花擺飾</a><a href="works.html#婚禮花藝">婚禮花藝</a></div></li>
+    <li><a href="oracle.html">花語占卜</a></li>
+    <li><a href="course.html">花藝課程</a></li>
+    <li><a href="about.html" class="on">關於努荋</a></li>
+    <li><a class="cta" href="https://www.facebook.com/NYHRflower" target="_blank">聯絡訂購</a></li>
+  </ul>
+</div></nav>
+
+<div class="banner"><img src="p_hero.jpg" alt=""><h1>關於努荋</h1></div>
+<section style="padding-top:44px">
+  <div class="about-grid">
+    <img class="zoomable" src="p_wand.jpg" alt="努荋弄花作品">
+    <div>
+      <div class="en" style="color:#c98d8d">Our Story</div>
+      <h2 style="letter-spacing:.15em;margin:10px 0 18px">把海邊的光,收進花裡</h2>
+      <p>努荋弄花是一間東海岸的個人花藝工作室。我們相信花禮不只是裝飾,而是一份「被記得」的心意——所以選擇乾燥花、不凋花與擬真花,讓每一束花在時間裡慢慢說話,而不是三天後凋謝。</p>
+      <p style="margin-top:14px">從開幕花盆、婚禮捧花到節慶花禮,每一件作品都是接單後手工製作。也開設一對一與團體花藝課,希望更多人體會親手弄花的療癒。</p>
+    </div>
+  </div>
+  <div class="sec-head" style="margin-top:80px"><div class="en">Materials</div><h2>三種花材,三種陪伴</h2></div>
+  <div class="about">
+    <div class="card"><h3>乾燥花</h3><p>自然風乾的真實花材,保留樸質色澤與質地,自然存放可達一年以上,適合花束、花圈與居家佈置。</p></div>
+    <div class="card"><h3>不凋花</h3><p>經保存技術處理的真花,觸感柔軟、顏色飽和,妥善保存可達三至五年,適合玻璃罩花禮與紀念日贈禮。</p></div>
+    <div class="card"><h3>擬真花</h3><p>高擬真人造花材,不受氣候與潮濕影響,適合開幕盆花、商業空間與長期展示的大型作品。</p></div>
+  </div>
+</section>
+<footer>
+  <div class="foot-in">
+    <div><div class="flogo">努荋弄花<small>Nyhr floral design</small></div>
+      <p>個人花藝工作室・接單出貨<br>乾燥花・不凋花・擬真花</p></div>
+    <div><b>作品訂購</b><a href="works.html#花束花禮">花束花禮</a><a href="works.html#玻璃罩花禮">玻璃罩花禮</a><a href="works.html#花圈壁飾">花圈壁飾</a><a href="works.html#盆花擺飾">盆花擺飾</a><a href="works.html#婚禮花藝">婚禮花藝</a></div>
+    <div><b>服務</b><a href="course.html">花藝課程</a><a href="oracle.html">花語占卜</a><a href="about.html">品牌故事</a></div>
+    <div><b>聯絡我們</b>
+      <a href="https://www.facebook.com/NYHRflower" target="_blank">Facebook 私訊</a>
+      <a href="tel:0972351079">電話 0972-351-079</a>
+      <p style="margin-top:6px">製作 3–7 個工作天<br>宅配寄送/約定自取</p></div>
+  </div>
+  <div class="copy">© 2026 努荋弄花 Nyhr floral design</div>
+</footer>
+<div class="lb" id="lb" onclick="this.classList.remove('show')"><img id="lbimg" src="" alt=""></div>
+<script>
+document.querySelectorAll('.zoomable').forEach(im => im.addEventListener('click', () => {
+  document.getElementById('lbimg').src = im.dataset.full || im.src;
+  document.getElementById('lb').classList.add('show'); }));
+</script>
+</body></html>

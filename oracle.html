@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花語心靈占卜｜努荋弄花 Nyhr floral design</title>
+<meta name="description" content="花語心靈占卜:心靈測驗或直覺抽卡,讓花回應你此刻的心情,並推薦最適合的花禮。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<nav><div class="nav-in">
+  <a class="logo" href="index.html">努荋弄花<small>Nyhr floral design</small></a>
+  <button class="burger" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li class="dd"><a href="works.html">作品訂購 ▾</a>
+      <div class="ddm"><a href="works.html#花束花禮">花束花禮</a><a href="works.html#玻璃罩花禮">玻璃罩花禮</a><a href="works.html#花圈壁飾">花圈壁飾</a><a href="works.html#盆花擺飾">盆花擺飾</a><a href="works.html#婚禮花藝">婚禮花藝</a></div></li>
+    <li><a href="oracle.html" class="on">花語占卜</a></li>
+    <li><a href="course.html">花藝課程</a></li>
+    <li><a href="about.html">關於努荋</a></li>
+    <li><a class="cta" href="https://www.facebook.com/NYHRflower" target="_blank">聯絡訂購</a></li>
+  </ul>
+</div></nav>
+
+<div class="banner"><img src="p_moon.jpg" alt=""><h1>花語心靈占卜</h1></div>
+<section style="padding-top:44px">
+  <div class="sec-head"><p>靜下心,讓一朵花回應你此刻的心情,並為你找到最適合的花禮</p></div>
+  <div class="oracle-box">
+    <div class="oracle-tabs">
+      <button class="otab active" data-mode="quiz">心靈測驗</button>
+      <button class="otab" data-mode="cards">直覺抽卡</button>
+    </div>
+    <div id="mode-quiz" class="omode">
+      <div class="q-progress"><div id="q-bar"></div></div>
+      <div id="q-question" class="q-question"></div>
+      <div id="q-options" class="q-options"></div>
+    </div>
+    <div id="mode-cards" class="omode" style="display:none">
+      <p class="card-hint">在心中默想一個此刻掛念的人或一件事,然後憑直覺選一張花語卡</p>
+      <div class="card-fan" id="card-fan"></div>
+    </div>
+    <div id="oracle-result" class="oresult" style="display:none">
+      <div class="oresult-flower">
+        <div class="en" id="r-en"></div>
+        <h3 id="r-flower"></h3>
+        <div class="r-motto" id="r-motto"></div>
+        <p id="r-msg"></p>
+      </div>
+      <div class="oresult-product">
+        <div class="r-label">為你推薦的花禮</div>
+        <a id="r-link" href="#"><img id="r-img" src="" alt="推薦花禮"></a>
+        <b id="r-product"></b>
+        <p id="r-why"></p>
+        <a class="btn btn-main" id="r-link2" href="#">看這件作品</a>
+        <button class="r-again" id="r-again">再占卜一次</button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+const FLOWERS = [
+ {key:'rose', en:'Preserved Rose', name:'不凋玫瑰', motto:'愛不必盛開才算數,留下來的都是真的',
+  msg:'你此刻最在意的,是一段想好好守住的感情。不凋玫瑰提醒你:真正重要的關係,不需要天天轟轟烈烈,能安穩地留在彼此生活裡,就是最好的答案。',
+  img:'bluedome', product:'藍玫瑰玻璃罩', link:'product-blue-rose-dome.html',
+  why:'把一朵不會凋謝的玫瑰罩進玻璃裡,送給想長久放在心上的那個人,或犒賞一直很努力的自己。'},
+ {key:'hydrangea', en:'Hydrangea', name:'乾燥繡球', motto:'聚在一起的小事,終會開成圓滿',
+  msg:'最近的你被許多瑣事包圍,有點分身乏術。繡球花由上百朵小花聚成一球,它想告訴你:你正在做的每件小事都不是白費,它們正悄悄聚成一個更完整的你。',
+  img:'purplebouquet', product:'藕紫典雅花束', link:'product-mauve-bouquet.html',
+  why:'以乾燥繡球與不凋玫瑰組成的溫柔色系,適合感謝一路陪你把小事撐起來的人。'},
+ {key:'sun', en:'Sola Flower', name:'索拉花', motto:'溫柔不是軟弱,是留給世界的光',
+  msg:'你習慣把溫暖留給別人,自己卻常常忘了充電。手工削成的索拉花樸實不張揚,就像你的付出。這朵花提醒你:今天也要留一點溫柔給自己。',
+  img:'yellow', product:'暖陽花束', link:'product-sunny-bouquet.html',
+  why:'奶油黃與棉花的組合像午後的太陽,適合需要被鼓勵的自己,或想為朋友打氣的時刻。'},
+ {key:'gypso', en:"Baby's Breath", name:'滿天星', motto:'思念不說話,卻佈滿整片星空',
+  msg:'心裡有個一直惦記的人吧。滿天星的花語是純真的思念——有些話不用急著說出口,一份剛剛好的小心意,對方就能懂。',
+  img:'heart', product:'怦然心動花束', link:'product-heartbeat-bouquet.html',
+  why:'藤圈繞成的心型花束,把說不出口的想念交給花,告白、紀念日都合適。'},
+ {key:'euca', en:'Eucalyptus', name:'尤加利', motto:'守護是安靜的,像葉子包住風',
+  msg:'你正在為家人或某個空間操心。尤加利自古是守護與恩賜的象徵,它想告訴你:你撐起的那個角落,已經比你以為的更穩固了。',
+  img:'wreath', product:'霧藍花圈', link:'product-misty-wreath.html',
+  why:'掛在門上或牆面的花圈是「守護」的具象,適合新居、開幕,或想安定一個空間的時候。'},
+ {key:'lav', en:'Lavender', name:'乾燥薰衣草', motto:'安靜下來,答案自己會浮上來',
+  msg:'最近的你思緒有點滿,需要一段不被打擾的時間。薰衣草的花語是靜謐與療癒——先照顧好呼吸,再處理事情,順序對了,一切就不難。',
+  img:'purpledome', product:'藕紫花盅', link:'product-lilac-cloche.html',
+  why:'放在書桌或床頭的小花盅,是給自己的安靜角落,每天看它一眼,就想起要好好休息。'},
+ {key:'moon', en:'Moonflower', name:'月光花', motto:'夜裡開的花,是留給自己的溫柔',
+  msg:'白天的你把自己打理得很好,但只有夜深時的你知道自己有多累。月光花在夜裡靜靜綻放——你的努力不需要所有人看見,你自己記得,就夠了。',
+  img:'moon', product:'月亮壁飾', link:'product-crescent-moon.html',
+  why:'弦月造型的花藝壁飾,掛在房間陪你入睡,送給值得被溫柔以待的自己。'},
+ {key:'daisy', en:'Daisy', name:'小雛菊', motto:'快樂藏在很小的地方,彎腰就撿得到',
+  msg:'你其實比想像中容易快樂,只是最近忘了停下來。小雛菊的花語是隱藏的快樂——今天給自己一個小小的儀式感,心情就會不一樣。',
+  img:'daruma', product:'療癒迷你盆花', link:'product-mini-healing-pot.html',
+  why:'巴掌大的桌上小盆花,不貴卻很暖,適合隨手送人,也適合突然想對自己好一點的日子。'}
+];
+const QUIZ = [
+ {q:'現在的你,最想去哪裡待一個下午?', opts:[
+   ['一個人的海邊,聽浪就好',['moon','lav']],
+   ['熱鬧的市集,和喜歡的人邊走邊吃',['gypso','daisy']],
+   ['家裡的沙發,抱一杯熱茶',['euca','hydrangea']],
+   ['有大片草地的公園,曬曬太陽',['sun','rose']]]},
+ {q:'如果心情是一種天氣,最近比較像?', opts:[
+   ['晴時多雲,偶爾放空',['daisy','sun']],
+   ['連日陰天,悶悶的',['lav','moon']],
+   ['雷陣雨,情緒來得快去得快',['gypso','hydrangea']],
+   ['雨後放晴,正在慢慢好起來',['rose','euca']]]},
+ {q:'這束花,你心裡想送給誰?', opts:[
+   ['一直放在心上的那個人',['rose','gypso']],
+   ['辛苦很久的自己',['moon','lav']],
+   ['家人,想讓家更溫暖',['euca','hydrangea']],
+   ['帶給我快樂的朋友',['daisy','sun']]]},
+ {q:'憑直覺選一個顏色', opts:[
+   ['藕粉/玫瑰色',['rose','gypso']],
+   ['霧藍/靛藍',['euca','moon']],
+   ['藕紫/薰衣草紫',['lav','hydrangea']],
+   ['奶油黃/暖白',['sun','daisy']]]},
+ {q:'忙完一整天,你最需要的是?', opts:[
+   ['有人聽我說說話',['gypso','hydrangea']],
+   ['完全不被打擾的獨處',['lav','moon']],
+   ['一點小小的成就感',['sun','rose']],
+   ['沒有理由地大笑一場',['daisy','euca']]]},
+ {q:'對「永恆」這件事,你的感覺是?', opts:[
+   ['相信,有些事真的可以很久',['rose','euca']],
+   ['比起永恆,更珍惜當下',['daisy','sun']],
+   ['希望重要的回憶不要褪色',['gypso','moon']],
+   ['細水長流就很好',['hydrangea','lav']]]}
+];
+let qIdx = 0, scores = {};
+const $ = id => document.getElementById(id);
+function resetOracle(){
+  qIdx = 0; scores = {};
+  $('oracle-result').style.display = 'none';
+  const mode = document.querySelector('.otab.active').dataset.mode;
+  $('mode-quiz').style.display = mode === 'quiz' ? '' : 'none';
+  $('mode-cards').style.display = mode === 'cards' ? '' : 'none';
+  if (mode === 'quiz') renderQ(); else renderCards();
+}
+function renderQ(){
+  const item = QUIZ[qIdx];
+  $('q-bar').style.width = (qIdx / QUIZ.length * 100) + '%';
+  $('q-question').textContent = 'Q' + (qIdx+1) + '. ' + item.q;
+  const box = $('q-options'); box.innerHTML = '';
+  item.opts.forEach(([txt, keys]) => {
+    const b = document.createElement('button');
+    b.className = 'q-opt'; b.textContent = txt;
+    b.onclick = () => {
+      keys.forEach(k => scores[k] = (scores[k]||0) + 1);
+      qIdx++;
+      if (qIdx < QUIZ.length) renderQ();
+      else {
+        const best = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+        showResult(FLOWERS.find(f => f.key === best));
+      }
+    };
+    box.appendChild(b);
+  });
+}
+function renderCards(){
+  const fan = $('card-fan'); fan.innerHTML = '';
+  const shuffled = [...FLOWERS].sort(() => Math.random() - .5);
+  shuffled.forEach(f => {
+    const c = document.createElement('div');
+    c.className = 'ocard';
+    c.innerHTML = '<div class="ocard-in">✿</div>';
+    c.onclick = () => showResult(f);
+    fan.appendChild(c);
+  });
+}
+function showResult(f){
+  $('mode-quiz').style.display = 'none';
+  $('mode-cards').style.display = 'none';
+  $('r-en').textContent = f.en;
+  $('r-flower').textContent = f.name;
+  $('r-motto').textContent = f.motto;
+  $('r-msg').textContent = f.msg;
+  $('r-product').textContent = f.product;
+  $('r-why').textContent = f.why;
+  $('r-img').src = 'p_' + f.img + '.jpg';
+  $('r-link').href = f.link; $('r-link2').href = f.link;
+  $('oracle-result').style.display = 'grid';
+  $('oracle-result').scrollIntoView({behavior:'smooth', block:'center'});
+}
+document.querySelectorAll('.otab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.otab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active'); resetOracle();
+});
+$('r-again').onclick = resetOracle;
+resetOracle();
+</script>
+<footer>
+  <div class="foot-in">
+    <div><div class="flogo">努荋弄花<small>Nyhr floral design</small></div>
+      <p>個人花藝工作室・接單出貨<br>乾燥花・不凋花・擬真花</p></div>
+    <div><b>作品訂購</b><a href="works.html#花束花禮">花束花禮</a><a href="works.html#玻璃罩花禮">玻璃罩花禮</a><a href="works.html#花圈壁飾">花圈壁飾</a><a href="works.html#盆花擺飾">盆花擺飾</a><a href="works.html#婚禮花藝">婚禮花藝</a></div>
+    <div><b>服務</b><a href="course.html">花藝課程</a><a href="oracle.html">花語占卜</a><a href="about.html">品牌故事</a></div>
+    <div><b>聯絡我們</b>
+      <a href="https://www.facebook.com/NYHRflower" target="_blank">Facebook 私訊</a>
+      <a href="tel:0972351079">電話 0972-351-079</a>
+      <p style="margin-top:6px">製作 3–7 個工作天<br>宅配寄送/約定自取</p></div>
+  </div>
+  <div class="copy">© 2026 努荋弄花 Nyhr floral design</div>
+</footer>
+<div class="lb" id="lb" onclick="this.classList.remove('show')"><img id="lbimg" src="" alt=""></div>
+<script>
+document.querySelectorAll('.zoomable').forEach(im => im.addEventListener('click', () => {
+  document.getElementById('lbimg').src = im.dataset.full || im.src;
+  document.getElementById('lb').classList.add('show'); }));
+</script>
+</body></html>

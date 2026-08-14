@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花藝課程・團體約課｜努荋弄花 Nyhr floral design</title>
+<meta name="description" content="花藝課程・團體約課。努荋弄花,乾燥花・不凋花・擬真花個人工作室。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<nav><div class="nav-in">
+  <a class="logo" href="index.html">努荋弄花<small>Nyhr floral design</small></a>
+  <button class="burger" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li class="dd"><a href="works.html">作品訂購 ▾</a>
+      <div class="ddm"><a href="works.html#花束花禮">花束花禮</a><a href="works.html#玻璃罩花禮">玻璃罩花禮</a><a href="works.html#花圈壁飾">花圈壁飾</a><a href="works.html#盆花擺飾">盆花擺飾</a><a href="works.html#婚禮花藝">婚禮花藝</a></div></li>
+    <li><a href="oracle.html">花語占卜</a></li>
+    <li><a href="course.html" class="on">花藝課程</a></li>
+    <li><a href="about.html">關於努荋</a></li>
+    <li><a class="cta" href="https://www.facebook.com/NYHRflower" target="_blank">聯絡訂購</a></li>
+  </ul>
+</div></nav>
+
+<div class="banner"><img src="p_giftset.jpg" alt=""><h1>花藝課程</h1></div>
+<section style="padding-top:44px">
+  <div class="sec-head"><div class="en">Workshop</div><h2>親手做一份不凋謝的禮物</h2>
+  <p>不論是想體驗花藝、做禮物,或與朋友同事一起約課,都歡迎預約</p></div>
+  <div class="course-cards">
+    <div class="ccard"><b>一對一手作課</b><em>NT$1,200 起/人</em>
+      <p>花束、花圈或玻璃罩擇一主題,從認識花材到完成作品,約 1.5–2 小時,成品直接帶回家。</p></div>
+    <div class="ccard"><b>團體體驗課</b><em>NT$900 起/人</em>
+      <p>3 人即可成團,朋友聚會、公司團建、社團活動都適合,可到府授課或於工作室進行。</p></div>
+    <div class="ccard"><b>節慶主題課</b><em>依主題公告</em>
+      <p>母親節、聖誕節等季節限定主題,材料包升級,名額有限,請關注 FB 公告。</p></div>
+  </div>
+  <div class="note" style="text-align:center;margin-top:40px">
+    課程均含全部花材與工具,無經驗可。預約與檔期請 <a href="https://www.facebook.com/NYHRflower" target="_blank" style="color:#a96f6f">FB 私訊</a> 或電洽 0972-351-079。
+  </div>
+</section>
+<footer>
+  <div class="foot-in">
+    <div><div class="flogo">努荋弄花<small>Nyhr floral design</small></div>
+      <p>個人花藝工作室・接單出貨<br>乾燥花・不凋花・擬真花</p></div>
+    <div><b>作品訂購</b><a href="works.html#花束花禮">花束花禮</a><a href="works.html#玻璃罩花禮">玻璃罩花禮</a><a href="works.html#花圈壁飾">花圈壁飾</a><a href="works.html#盆花擺飾">盆花擺飾</a><a href="works.html#婚禮花藝">婚禮花藝</a></div>
+    <div><b>服務</b><a href="course.html">花藝課程</a><a href="oracle.html">花語占卜</a><a href="about.html">品牌故事</a></div>
+    <div><b>聯絡我們</b>
+      <a href="https://www.facebook.com/NYHRflower" target="_blank">Facebook 私訊</a>
+      <a href="tel:0972351079">電話 0972-351-079</a>
+      <p style="margin-top:6px">製作 3–7 個工作天<br>宅配寄送/約定自取</p></div>
+  </div>
+  <div class="copy">© 2026 努荋弄花 Nyhr floral design</div>
+</footer>
+<div class="lb" id="lb" onclick="this.classList.remove('show')"><img id="lbimg" src="" alt=""></div>
+<script>
+document.querySelectorAll('.zoomable').forEach(im => im.addEventListener('click', () => {
+  document.getElementById('lbimg').src = im.dataset.full || im.src;
+  document.getElementById('lb').classList.add('show'); }));
+</script>
+</body></html>
