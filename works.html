@@ -84,7 +84,12 @@ function apply(f){
   document.querySelector('.fcount').textContent = n + ' 件作品';
 }
 btns.forEach(b => b.onclick = () => { apply(b.dataset.f); history.replaceState(null,'', b.dataset.f==='all' ? 'works.html' : '#'+b.dataset.f); });
-if (location.hash) apply(decodeURIComponent(location.hash.slice(1)));
+function fromHash(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  apply(h && [...btns].some(b => b.dataset.f === h) ? h : 'all');
+}
+window.addEventListener('hashchange', fromHash);
+if (location.hash) fromHash();
 </script>
 <footer>
   <div class="foot-in">
